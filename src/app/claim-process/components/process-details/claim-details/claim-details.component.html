@@ -1,0 +1,15 @@
+<div>
+    <b>סוג תביעה</b>
+    <select name="claimType" [(ngModel)]="claim.superClaimType" required>
+        <option *ngFor="let type of superClaimTypes" [value]="type.code">{{type.value}}</option>
+    </select>
+
+    <b>סיבת הארוע</b>
+    <select name="claimCause" [(ngModel)]="claim.claimCause" required>
+        <option *ngFor="let type of claimCauses" [value]="type.code">{{type.value}}</option>
+    </select>
+    <b>התביעה הוגשה באמצעות</b>
+    <b>תאריך הארוע</b> <input type="datetime">
+    <b>מהות הארוע</b>
+    <b>אופן קבלת התביעה</b>
+</div>
