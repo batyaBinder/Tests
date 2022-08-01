@@ -1,1 +1,10 @@
-<p>contects-summary works!</p>
+
+<div class="title">ריכז אנשי קשר</div>
+<span>מספר אנשי קשר בתהליך: </span>{{contactPersons?.length}}
+<br>
+<br>
+
+<span class="subTitle">פעולות אפשריות</span>
+<button [ngClass]="insuredAdded?'enabledButton':'refreshButton'" (click)="AddInsured()" [disabled]="!insuredAdded">הוספת מבוטח</button>
+<button class="enabledButton" (click)="DeleteAllContacts()">איפוס מלא</button>
+<button class="enabledButton" (click)="DeleteContacts()">איפוס אנשי קשר</button>

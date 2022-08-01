@@ -1,9 +1,12 @@
+import { KeyValue } from "./keyValue";
+import { superClaimType } from "../data/data";
+
 
 
 
 export class SuperClaim {
     superClaimNum: number;
-    superClaimStatus?: number;
+    superClaimStatus?: KeyValue;
     superClaimType?:  number
     eventDate?: number;
     claimCause?: number;
@@ -15,8 +18,8 @@ export class SuperClaim {
      *
      */
     constructor() {
-        this.superClaimNum = 0;
-        this.superClaimStatus = 1;
+        this.superClaimNum = 1;
+        this.superClaimStatus = undefined;
         this.superClaimType = undefined;
         this.eventDate = undefined;
         this.claimCause = undefined

@@ -1,3 +1,4 @@
+import { submitedBy, superClaimType } from "../data/data";
 import { ContactPerson } from "./contactPerson";
 import { Insured } from "./insured";
 import { IProcess } from "./iprocess.interface";
@@ -16,13 +17,13 @@ export class Process implements IProcess {
     constructor() {
         this.superClaim = {
             superClaimNum: 500040204,
-            superClaimStatus: 1,
+            superClaimStatus: superClaimType[1],
             superClaimType: undefined,
-            eventDate: 0,
-            claimCause: 2,
-            injuryType: 1,
-            submitedBy: 1,
-            submitionMethod: 1
+            eventDate: undefined,
+            claimCause: undefined,
+            injuryType: undefined,
+            submitedBy: undefined,
+            submitionMethod: undefined
         };
         this.insured = {
             address: {
@@ -38,11 +39,26 @@ export class Process implements IProcess {
         this.contactPersons = [{
             id: 1,
             deliveryFlag: false,
-            type: new KeyValue(0, ""),
-            name: "ניקיטה ג'ין",
-            phoneNumber: 0,
-            email: "",
-            address: ""
+            type: submitedBy[0],
+            name: "ניקיטה גין",
+            phoneNumber: 89453641,
+            email: "bg@gmail.com",
+            address: {
+                cityName: "בני ברק",
+                streetName: "הזית 20",
+            }
+        },
+        {
+            id: 2,
+            deliveryFlag: true,
+            type: submitedBy[1],
+            name: "חיים לוי",
+            phoneNumber: 533112028,
+            email: "cl@walla.co.il",
+            address: {
+                cityName: "עפולה",
+                streetName: "הזית 18",
+            }
         }];
 
     }

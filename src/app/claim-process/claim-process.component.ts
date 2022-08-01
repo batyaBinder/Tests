@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { setContacts } from '../state/actions/contacts.action';
 import { Process } from './models/process';
+import {AppState} from '../app.state';
 
 @Component({
   selector: 'claim-process',
@@ -12,9 +15,10 @@ export class ClaimProcessComponent implements OnInit {
   @ViewChild('processForm') processForm!: NgForm;
   process: Process = new Process();
 
-  constructor() { }
+  constructor(private store:Store<AppState>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(setContacts({contacts:this.process.contactPersons}));
   }
 
   refreshProcess() {

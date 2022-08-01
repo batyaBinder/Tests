@@ -1,13 +1,13 @@
 <form (ngSubmit)="onSubmit()" #processForm="ngForm">
-    <div>
-        <b> תביעת על: </b><span>{{process.superClaim.superClaimNum}}</span>
-        <b> מצב תביעה: </b><span>{{process.superClaim.superClaimStatus}}</span>
-        <button class="refreshButton" (click)="refreshProcess()">רענון תהליך</button>
-
-        <app-process-details [insured]="process.insured" [superClaim]="process.superClaim"></app-process-details>
-        <app-contects-summary> </app-contects-summary>
+    <div >
+        <b class="subTitle"> תביעת על: </b><span>{{process.superClaim.superClaimNum}}</span>
+        <b class="subTitle"> מצב תביעה: </b><span>{{process.superClaim.superClaimStatus?.value}}</span>
+        <button class="enabledButton" (click)="refreshProcess()">רענון תהליך</button>
+        <app-process-details [insured]="process.insured" [superClaim]="process.superClaim" [contactPersons]="process.contactPersons" ></app-process-details>
+        <app-contects-summary [insured]="process.insured" > </app-contects-summary>
         <app-contects></app-contects>
     </div>
-    <button class="refreshButton" type="submit" [disabled]="!processForm.form.valid">המשך תהליך</button>
-    {{processForm.form.valid}}
+
+    <button  [ngClass]="!processForm.form.valid?'refreshButton':'enabledButton'"  type="submit" [disabled]="!processForm.form.valid" >המשך תהליך</button>
+
 </form>

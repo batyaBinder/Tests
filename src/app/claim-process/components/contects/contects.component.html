@@ -1,1 +1,96 @@
-<p>contects works!</p>
+<p class="title">אנשי קשר</p>
+<div>
+
+
+  <table class="table table-striped" style="width:100%;">
+    <thead class="thead-dark">
+      <th>מועדף</th>
+      <th>שם איש קשר</th>
+      <th>סוג</th>
+      <th>כתובת</th>
+      <th>טלפון</th>
+      <th>דואל</th>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let myContact of contactPersons  ; let i = index;">
+        <td>
+          <input type="checkbox" name="deliveryFlag" [checked]="myContact.deliveryFlag"
+            (click)="onClickDelivery(myContact)" />
+
+        </td>
+        <td>
+          {{myContact.name}}
+        </td>
+        <td>{{myContact.type?.value}} </td>
+        <td>{{myContact.address.streetName}} {{myContact.address.cityName}}</td>
+        <td>{{myContact.phoneNumber |phoneFormat}}</td>
+        <td>{{myContact.email}} </td>
+      </tr>
+  </table>
+  <!-- <div *ngIf="prmEmail.errors?.email"> Primary email address is not valid. </div> -->
+
+  <div *ngIf="newPerson" style="margin: 40px;">
+    <form #form="ngForm">
+
+      <span>
+        <input class="form-control" type="text" id="name" required [(ngModel)]="newPerson.name" name="name"
+          #name="ngModel" ngModel [pattern]="onlyHebrewPattern" />
+      </span>
+      <span>
+        <select name="type" [(ngModel)]="newPerson.type" required #type="ngModel" id="type">
+          <option *ngFor="let type of submitedBy" [ngValue]="type">{{type.value}}</option>
+        </select>
+       
+      </span>
+      <span>
+        <input class="form-control" type="text" id="streetName" [(ngModel)]="newPerson.address.streetName"
+          name="streetName" #streetName="ngModel" />
+        <input class="form-control" type="text" id="cityName" [(ngModel)]="newPerson.address.cityName" name="cityName"
+          #cityName="ngModel" />
+      </span>
+      <span>
+        <input class="form-control" type="text" id="phoneNumber" maxlength="10" required
+          [(ngModel)]="newPerson.phoneNumber" name="phoneNumber" #phoneNumber="ngModel" [pattern]="onlyDigits" />
+
+      </span>
+      <span>
+        <input class="form-control" type="text" id="email" [(ngModel)]="newPerson.email" name="email" #email="ngModel"
+          [pattern]="emailPattern" />
+      </span>
+      <span>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+          <div *ngIf="name.errors?.['required']">
+            שדה שם חובה
+          </div>
+          <div *ngIf="name.errors?.['pattern']">
+            חובה אותיות עבריות.
+          </div>
+        </div>
+        <div *ngIf="type.invalid && (type.dirty || type.touched)" class="alert">
+          <div *ngIf="type.errors?.['required']">
+            שדה סוג חובה 
+          </div>
+        </div>
+
+        
+        <div *ngIf="form.controls['phoneNumber'] .invalid && (form.controls['phoneNumber'].dirty || form.controls['phoneNumber'].touched)" class="alert">
+          <div *ngIf="form.controls['phoneNumber'].errors?.['required']">
+            שדה טלפון חובה
+          </div>
+        </div>
+        <div *ngIf="form.controls['phoneNumber'] .invalid && (form.controls['phoneNumber'].dirty || form.controls['phoneNumber'].touched)" class="alert">
+          <div *ngIf="form.controls['phoneNumber'].errors?.['pattern']">
+            .טלפון ספרות בלבד ו 10 תווים
+          </div>
+        </div>
+        <div *ngIf="form.controls['email'] .invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert">
+          <div *ngIf="form.controls['email'] .errors?.['pattern']">מייל לא תקין.</div>
+        </div>
+      </span>
+      <button [ngClass]="!form.valid?'refreshButton':'enabledButton'" [disabled]="!form.valid" class="btn btn-default" type="button" (click)="addToContacts()">+</button>
+    </form>
+  </div>
+</div>
+
+<button  [ngClass]="newPerson?'refreshButton':'enabledButton'" (click)="AddNewRow()" [disabled]="newPerson">הוספת אש קשר חדש</button>

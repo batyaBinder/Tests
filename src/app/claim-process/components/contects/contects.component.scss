@@ -1,0 +1,32 @@
+.title
+{
+    size: 5;
+    color: red;
+}
+
+.button
+{
+border-width: 0;
+color: blue;
+background-color: white;
+cursor: pointer;
+}
+
+.refreshButton{
+    width: 150px;
+    background-color: blue;
+    color: white;
+    margin-right: 150px;
+   
+}
+
+.enabledButton
+{
+background-color: red;
+color: white;
+width: 150px;
+margin-right: 150px;
+}
+table, th, td {
+    border: 1px solid black;
+}

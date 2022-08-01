@@ -6,5 +6,5 @@ import { SuperClaim } from "./super-claim";
 export interface IProcess {
     superClaim: SuperClaim;
     insured: Insured;
-    contactPersons: Array<ContactPerson>;
+    contactPersons: ContactPerson[];
 }

@@ -1,15 +1,38 @@
 <div>
-    <b>סוג תביעה</b>
+    <br>
+    <b>סוג תביעת על</b>
     <select name="claimType" [(ngModel)]="claim.superClaimType" required>
         <option *ngFor="let type of superClaimTypes" [value]="type.code">{{type.value}}</option>
     </select>
-
+    <br>
+    <br>
     <b>סיבת הארוע</b>
-    <select name="claimCause" [(ngModel)]="claim.claimCause" required>
+    <select name="claimCause" [(ngModel)]="claim.claimCause" required #claimCause="ngModel">
         <option *ngFor="let type of claimCauses" [value]="type.code">{{type.value}}</option>
     </select>
+    <br>
+    <br>
     <b>התביעה הוגשה באמצעות</b>
-    <b>תאריך הארוע</b> <input type="datetime">
+    <select name="submitedBy" [(ngModel)]="claim.submitedBy" required (change)="onClickSubmitedBy()" >
+        <option *ngFor="let type of submitedBy" [value]="type.code">{{type.value}}</option>
+    </select>
+    <br>
+    <br>
+    <b>תאריך הארוע</b>
+    <input type="date" name="eventDate" [(ngModel)]="claim.eventDate" required>
+    <br>
+    <br>
     <b>מהות הארוע</b>
+    <span >
+        <select name="injuryType" [(ngModel)]="claim.injuryType" [disabled]="!claim.claimCause" [required]="!claim.claimCause">
+            <option *ngFor="let type of injuryType" [value]="type.code">{{type.value}}</option>
+        </select>
+    </span>
+    <br>
+    <br>
     <b>אופן קבלת התביעה</b>
+    <select name="submitionMethod" [(ngModel)]="claim.submitionMethod">
+        <option *ngFor="let type of submitionMethod" [value]="type.code">{{type.value}}</option>
+    </select>
+    <br>
 </div>

@@ -1,28 +1,27 @@
 import { KeyValue } from "./keyValue";
+import { claimCause, superClaimType,submitedBy,injuryType,submitionMethod } from 'src/app/claim-process/data/data';
+
 
 export class ContactPerson{
     id: number;
-        deliveryFlag: boolean;
-        type: KeyValue;
-        name: string;
-        phoneNumber: number;
-        email: string;
-        address: string;
-
-        /**
-         *
-         */
-        /**
-         *
-         */
-        constructor(id:number, delivery:boolean, type:KeyValue,name:string,phoneNumber:number,email:string,address:string) {
-            this.id=id;
-            this.deliveryFlag=delivery;
-            this.type=type;
-            this.name=name;
-            this.phoneNumber=phoneNumber;
-            this.email=email;
-            this.address=address;
+        deliveryFlag?: boolean;
+        type?: KeyValue;
+        name?: string;
+        phoneNumber?: number;
+        email?: string;
+        address: {
+            cityName: string;
+            streetName: string;
+        };
+        
+        constructor() {
+            this.id=12;
+            this.deliveryFlag=true;
+            this.type=undefined;
+            this.name=undefined;
+            this.phoneNumber=undefined;
+            this.email=undefined;
+            this.address= { cityName: "", streetName: "" };;
 
         }
 }
